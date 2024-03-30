@@ -1,0 +1,16 @@
+# Load necessary libraries
+library(cluster)
+library(fpc)
+library(dendextend)
+
+# Load the dataset
+data <- read.csv("C:/Users/Harshitha/Downloads/Credit Card Customer Credit_Card_Customer_Data.csv")
+
+# Perform clustering using ROCK algorithm
+rock_clusters <- ROCK(data, verbose=TRUE)
+
+# Convert clustering results to dendrogram
+dend <- as.dendrogram(agnes(as.dist(1 - rock_clusters$clustering)))
+
+# Plot dendrogram
+plot(dend, main="Dendrogram of ROCK Clustering")
